@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom'
 import { getProductosFirebase } from '../redux/actions/actionProductos';
 import { ImagenBanner } from '../styles/Home.styles';
+import { v4 as uuidv4 } from 'uuid';
 import { ContenedorCardProducto, ContenedorImagenCard, ContenedorProductos, DetallesCardProducto, EstadoCardProducto, ImagenCardProducto, PrecioCardProducto, ProductosDetallesStyles, TituloCardProducto } from '../styles/ProductosDetalles.styles';
 
 export const ProductosDetalles = () => {
@@ -27,8 +28,8 @@ export const ProductosDetalles = () => {
                         console.log(element)
                         return(
                             <>
-                                <Link to={`/productos/${id}/${element.nombre}`}>
-                                    <ContenedorCardProducto>
+                                <Link to={`/productos/${id}/${element.nombre}` }>
+                                    <ContenedorCardProducto key={uuidv4()}>
                                             <ContenedorImagenCard>
                                                 <ImagenCardProducto src={element.imagen} alt={element.nombre} />
                                             </ContenedorImagenCard>
