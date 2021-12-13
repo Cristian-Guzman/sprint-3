@@ -13,7 +13,7 @@ export const AnotherRoutes = () => {
                 <Route path="*" element={<Navigate replace to="/" />} /> 
                 <Route path="/" element={<Home/>} />
                 <Route path="/productos/:id" element={<ProductosDetalles />} />
-                <Route path="/productos/:id/:info" element={<ProductoInformacion />} />
+                <Route path="/productos/:id/:nombre" element={<ProductoInformacion />} />
             </Routes>
         </>
     )
