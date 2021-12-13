@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getProductosFirebase } from '../redux/actions/actionProductos';
 import { ImagenBanner } from '../styles/Home.styles';
-import { ContenedorCardProducto, ContenedorProductos, DetallesCardProducto, EstadoCardProducto, ImagenCardProducto, PrecioCardProducto, ProductosDetallesStyles, TituloCardProducto } from '../styles/ProductosDetalles.styles';
+import { ContenedorCardProducto, ContenedorImagenCard, ContenedorProductos, DetallesCardProducto, EstadoCardProducto, ImagenCardProducto, PrecioCardProducto, ProductosDetallesStyles, TituloCardProducto } from '../styles/ProductosDetalles.styles';
 
 export const ProductosDetalles = () => {
     const [productosInfo, setProductosInfo] = useState()
@@ -27,14 +27,18 @@ export const ProductosDetalles = () => {
                         console.log(element)
                         return(
                             <>
-                                <ContenedorCardProducto>
-                                    <ImagenCardProducto src={element.imagen} />
-                                    <DetallesCardProducto>
-                                        <TituloCardProducto>{element.nombre}</TituloCardProducto>
-                                        <PrecioCardProducto>US${element.precio.toFixed(2)}</PrecioCardProducto>
-                                        <EstadoCardProducto>Envío GRATIS</EstadoCardProducto>
-                                    </DetallesCardProducto>
-                                </ContenedorCardProducto>
+                                <Link to={`/productos/${id}/${element.nombre}`}>
+                                    <ContenedorCardProducto>
+                                            <ContenedorImagenCard>
+                                                <ImagenCardProducto src={element.imagen} alt={element.nombre} />
+                                            </ContenedorImagenCard>
+                                            <DetallesCardProducto>
+                                                <TituloCardProducto>{element.nombre}</TituloCardProducto>
+                                                <PrecioCardProducto>US${Number(element.precio).toFixed(2)}</PrecioCardProducto>
+                                                <EstadoCardProducto>Envío GRATIS</EstadoCardProducto>
+                                            </DetallesCardProducto>
+                                    </ContenedorCardProducto>
+                                </Link>
                             </>
                         )
                     }) : <h1>Cargando...</h1>
