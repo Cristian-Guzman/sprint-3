@@ -4,8 +4,12 @@ import { db } from '../firebase/firebaseConfig';
 import { v4 as uuidv4 } from 'uuid';
 import { ContenedorBanner, CardBannerImagen, ContenedorBannerTitulo, ImagenBanner, CardImagen, Cards } from '../styles/Home.styles';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getProductosFirebase } from '../redux/actions/actionProductos';
 
 export const Home = () => {
+    const dispatch = useDispatch()
+    dispatch(getProductosFirebase())
     let categoriaDatos = [];
     const [banner, setBanner] = useState(undefined)
     useEffect(() => {

@@ -2,25 +2,25 @@ import { types } from "../types/types";
 import { getDocs, collection } from "firebase/firestore";
 import {db} from '../../firebase/firebaseConfig'
 
-const getProductos = (products) => {
+const getProductos = (productos) => {
     return {
         type: types.obtener,
-        payload: products,
+        payload: productos,
     };
 };
 
-export const getProductosFirebase = (coleccionName) => {
+export const getProductosFirebase = () => {
     return async (dispatch) => {
-        let docRef = collection(db, coleccionName);
+        let docRef = collection(db, 'productos');
         let getData = await getDocs(docRef);
 
-        const products = [];
+        const productos = [];
 
         getData.forEach((doc) => {
             //console.log(doc.data());
-            products.push(doc.data());
+            productos.push(doc.data());
         });
 
-        dispatch(getProductos(products));
+        dispatch(getProductos(productos));
     };
 };
