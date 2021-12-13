@@ -11,7 +11,7 @@ export const NavBarBasicStyle = styled.article`
 
 export const LogoAmazonas = styled.img`
     width: 150px;
-    height: 100%;
+    margin-top:.8rem;
     &:hover {
         border: 1px solid white;
     }
@@ -77,7 +77,7 @@ export const BarraBusquedaStyle = styled.div`
 
 export const ContenedorImg = styled.div`
     background-color: ${props => props.theme.secondary};
-    width: 30px;
+    width: 28px;
     box-sizing: border-box;
     padding: 6px;
     margin-left: -1px;
@@ -105,7 +105,8 @@ export const ContenedorCuenta = styled.div`
     p {
         margin: 0 0 2px;
         font-size: 14px;
-        cursor: pointer;
+        color: white;
+        text-decoration: none;
     }
     &:hover {
         border: 1px solid #fff;

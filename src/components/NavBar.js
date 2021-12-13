@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { AddressStyle, BarraBusquedaStyle, ContenedorCarrito, ContenedorCuenta, ContenedorImg, ContenedorTodoStyle, ImgMore, LogoAmazonas, NavBarBasicStyle, NavBarMoreStyle, TextMore } from '../styles/NavBar.style'
 
 export const NavBar = () => {
@@ -13,7 +14,7 @@ export const NavBar = () => {
     return (
         <>
             <NavBarBasicStyle>
-                <LogoAmazonas src={'https://res.cloudinary.com/workshop-principe/image/upload/v1639205447/Amazon%20Icons/menu_jcml3u.png'} />
+                <Link to="/"><LogoAmazonas src={'https://res.cloudinary.com/workshop-principe/image/upload/v1639205447/Amazon%20Icons/menu_jcml3u.png'} /></Link>
                 <AddressStyle>
                         <h1>Hola</h1>
                     <div>
@@ -36,7 +37,7 @@ export const NavBar = () => {
                 </BarraBusquedaStyle>
                 <ContenedorCuenta>
                     <h2>Hola, identificate</h2>
-                    <p>Cuenta</p>
+                    <Link to="/login"><p>Cuenta</p></Link>
                 </ContenedorCuenta>
                 <ContenedorCarrito>
                     <img src="https://res.cloudinary.com/da6fz1omm/image/upload/v1638148907/Im%C3%A1genes%20Amazonas/shopping-cart_tc2egg.png" alt=" " />
