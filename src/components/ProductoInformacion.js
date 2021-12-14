@@ -6,12 +6,17 @@ import { v4 as uuidv4 } from 'uuid';
 import { ContenedorInformacionProductosStyles, DetallesContenedorInformacionProductosStyles, EnvioContenedorInformacionProductosStyles, GaleriaInformacionProductosStyles, GrillaInformacionProductosStyles, ImagenesGaleriaInformacionProductosStyles, ImagenInformacionProductosStyles, TituloInformacionProductosStyle } from '../styles/ProductosInformacion.style';
 
 export const ProductoInformacion = () => {
-    const [productosInfo, setProductosInfo] = useState()
-    let img;
-    const [Imagen, setImagen] = useState(' ')
-    const dispatch = useDispatch();
     const parametros = useParams();
     const productos = useSelector(state => state.products.productos);
+    const [productosInfo, setProductosInfo] = useState()
+    let img
+    const [Imagen, setImagen] = useState(' ')
+    const dispatch = useDispatch();
+    useEffect(() => {
+        let productoNombre = productos.find(element => element.nombre === parametros.nombre)
+        setImagen(productoNombre.imagen)
+    }, [])
+    
     if (productos.length === 0) {
         dispatch(getProductosFirebase());
     }
@@ -19,28 +24,30 @@ export const ProductoInformacion = () => {
     useEffect(() => {
         setProductosInfo(productos.filter(element => element.seccion === parametros.id))
     }, [productos])
-    // const createImageName = (element) => {
-    //     img = element;
-    //     setImagen(img)
-    //     console.log(Imagen)
-    // }
+
+    const createImageName = (element) => {
+        img = element;
+        console.log(element)
+    }
     // const createImageName = useMemo(element) => {
     //     img = element;
     //     setImagen(img)
     //     console.log(Imagen)
     // }
     
-    // useEffect(() => {
+    useEffect(() => {
     // const createImageName = useCallback((element) => e => setImagen(e), [img]);
-    // }, [img])
+    console.log(Imagen)
+    }, [img])
+    // useEffect(() => {
+    //     ;
+    // }, [])
 
     return (
         <>
             <TituloInformacionProductosStyle>{parametros.id}</TituloInformacionProductosStyle>
             {
                 productosInfo && productosInfo.map(({entrega, seccion, precio, imagen, imagen1, imagen2, imagen3, sobre, nombre}) => {
-                    // parametros.nombre === nombre && createImageName(imagen);
-                    // parametros.nombre === nombre && setImagen(imagen)
                     return parametros.nombre === nombre && (
                         <ContenedorInformacionProductosStyles key={uuidv4()}>
                             <GrillaInformacionProductosStyles>
@@ -50,7 +57,7 @@ export const ProductoInformacion = () => {
                                     <ImagenesGaleriaInformacionProductosStyles onMouseOver={() => setImagen(imagen2)} src={imagen2}  alt={nombre}/>
                                     <ImagenesGaleriaInformacionProductosStyles onMouseOver={() => setImagen(imagen3)} src={imagen3}  alt={nombre}/>
                                 </GaleriaInformacionProductosStyles> {/* contenedor 1 */}
-                                <ImagenInformacionProductosStyles src={imagen}  alt={nombre}/> {/* contenedor 2 */}
+                                <ImagenInformacionProductosStyles src={Imagen}  alt={nombre}/> {/* contenedor 2 */}
                                 <DetallesContenedorInformacionProductosStyles>
                                     <h1>{parametros.nombre}</h1>
                                     <div>

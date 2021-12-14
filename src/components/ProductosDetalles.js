@@ -16,8 +16,11 @@ export const ProductosDetalles = () => {
     }
     useEffect(() => {
         setProductosInfo(productos.filter(element => element.seccion === id))
-        console.log(productosInfo)
+        console.log(productos)
     }, [productos])
+    useEffect(() => {
+        setProductosInfo(productos.filter(element => element.seccion === id))
+    }, [id])
     return (
         <>
             <ImagenBanner src="https://m.media-amazon.com/images/I/61uIjme4x8L._SX3000_.jpg" />
@@ -28,6 +31,7 @@ export const ProductosDetalles = () => {
                         console.log(element)
                         return(
                             <>
+                                <div key={uuidv4()}>
                                 <Link to={`/productos/${id}/${element.nombre}` }>
                                     <ContenedorCardProducto key={uuidv4()}>
                                             <ContenedorImagenCard>
@@ -40,6 +44,7 @@ export const ProductosDetalles = () => {
                                             </DetallesCardProducto>
                                     </ContenedorCardProducto>
                                 </Link>
+                            </div>
                             </>
                         )
                     }) : <h1>Cargando...</h1>

@@ -51,12 +51,13 @@ export const NavBar = () => {
                     <ImgMore src={'https://res.cloudinary.com/workshop-principe/image/upload/v1639244767/Amazon%20Icons/menu_cmvrtw.png'} alt="menu logo" />
                     <TextMore>Todo</TextMore>
                 </ContenedorTodoStyle>
-                <TextMore>Tarjetas de regalo</TextMore>
-                <TextMore>Prime</TextMore>
-                <TextMore>Los Más Vendidos</TextMore>
-                <TextMore>AmazonBasics</TextMore>
-                <TextMore>Cómputo y Tabletas</TextMore>
-                <TextMore>Los Más Regalados</TextMore>
+                <Link to="/productos/electronicos"><TextMore>Electrónicos</TextMore></Link>
+                <Link to="/productos/tenis"><TextMore>Moda</TextMore></Link>
+                <Link to="/productos/juguetes"><TextMore>Juguetes</TextMore></Link>
+                <Link to="/productos/belleza"><TextMore>Belleza</TextMore></Link>
+                <Link to="/productos/monitores"><TextMore>Monitores</TextMore></Link>
+                <Link to="/productos/videojuegos"><TextMore>videojuegos</TextMore></Link>
+                <Link to="/productos/juegos"><TextMore>Juegos para niños</TextMore></Link>
             </NavBarMoreStyle>
         </>
     )

@@ -147,6 +147,7 @@ export const NavBarMoreStyle = styled.article`
 
 export const TextMore = styled.h3`
     color: ${props => props.theme.white};
+    text-decoration: none;
     font-size: 0.8rem;
     margin 4px 0;
     
