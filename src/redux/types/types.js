@@ -1,7 +1,7 @@
 export const types = {
     obtener: 'Obtener Productos',
-    registro: '',
-    login: '',
-    logout: '',
-    ubicacion: ''
+    registro: 'Registro',
+    login: 'Login',
+    logout: 'Logout',
+    ubicacion: 'Ubicación'
 }

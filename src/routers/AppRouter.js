@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Login } from '../components/Login'
+import { Registro } from '../components/Registro'
 import { AnotherRoutes } from './AnotherRoutes'
 
 const AppRouter = () => {
@@ -9,6 +10,7 @@ const AppRouter = () => {
                 <Route path="*" element={<AnotherRoutes />} />
 
                 <Route path="login" element={<Login />}/>
+                <Route path="registro" element={<Registro />}/>
                 {/* <Route
                     path="registro"
                     element={

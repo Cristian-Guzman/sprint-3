@@ -1,15 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AddressStyle, BarraBusquedaStyle, ContenedorCarrito, ContenedorCuenta, ContenedorImg, ContenedorTodoStyle, ImgMore, LogoAmazonas, NavBarBasicStyle, NavBarMoreStyle, TextMore } from '../styles/NavBar.style'
 
 export const NavBar = () => {
     const [search, setSearch] = useState('')
+    const [ubicacion, setUbicacion] = useState("");
+    const [ubicacion2, setUbicacion2] = useState("");
+    useEffect(() => {
+        if (localStorage.getItem('pais')) {
+            setUbicacion(localStorage.getItem('pais'))
+        }
+    }, [])
     const handleSubmitSearch = (e) => {
         e.preventDefault();
         console.log(search)
     }
     const handleClickSearch = (e) => {
         console.log(e)
+    }
+    const handleAddres = () => {
+        console.log(navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDvS3_rBwM7RJYjDOnPzquTpJVlskDs7nI`
+            const getUbicacion = async() => {
+                const data = await fetch(url);
+                const { results } = await data.json();
+                setUbicacion(results[9].formatted_address);
+                setUbicacion2(results[0].formatted_address);
+                localStorage.setItem("pais", results[9].formatted_address);
+                localStorage.setItem("direccion", results[0].formatted_address);
+            }
+            getUbicacion()
+        }))
     }
     return (
         <>
@@ -19,7 +41,8 @@ export const NavBar = () => {
                         <h1>Hola</h1>
                     <div>
                         <img src="https://res.cloudinary.com/workshop-principe/image/upload/v1639244996/Amazon%20Icons/ubicacion_jacm9m.png" alt="ubicacion logo" />
-                        <h1>Elige tu dirección</h1>
+                        {ubicacion ? <h1>{ubicacion}</h1> :
+                            <h1 style={{cursor: "pointer"}} onClick={() => handleAddres()}>Elige tu dirección</h1>}
                     </div>
                 </AddressStyle>
                 <BarraBusquedaStyle>
