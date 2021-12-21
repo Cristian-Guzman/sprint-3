@@ -1,5 +1,12 @@
+import { types } from "../types/types";
 
-export const loginReducer = (state = {}, action) => {
+const initialState = {
+    id: '',
+    name: '',
+    logged: false
+}
+
+export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.login:
             return {

@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { loginFacebook, loginGoogle } from '../redux/actions/actionLogin'
 import { BotonCrearCuenta, ContenedorIniciarSesion, ContenedorLogin, Logo, RegresarInicio } from '../styles/Login.styles'
 
 export const Login = () => {
     const [VerMas, setVerMas] = useState(false)
+    const dispatch = useDispatch()
+
+    const state = useSelector(state => state.login)
+    if(state.logged) {
+        window.location.replace('/home')   
+    }
     return (
         <>
             <ContenedorLogin>
@@ -33,8 +41,8 @@ export const Login = () => {
                     </div>
                 </ContenedorIniciarSesion>
                 <div className="google-fb">
-                    <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" className="svg-inline--fa fa-facebook-f fa-w-10 fb" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google" className="google"></img>
+                    <svg onClick={() => dispatch(loginFacebook())} aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" className="svg-inline--fa fa-facebook-f fa-w-10 fb" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                    <img onClick={() => dispatch(loginGoogle())} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google" className="google"></img>
                 </div>
                 <h4>¿Eres nuevo en Amazon?</h4>
                 <Link to="/registro" className='link-registro'>

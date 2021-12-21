@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getProductosFirebase } from '../redux/actions/actionProductos';
 import { v4 as uuidv4 } from 'uuid';
 import { ContenedorInformacionProductosStyles, DetallesContenedorInformacionProductosStyles, EnvioContenedorInformacionProductosStyles, GaleriaInformacionProductosStyles, GrillaInformacionProductosStyles, ImagenesGaleriaInformacionProductosStyles, ImagenInformacionProductosStyles, TituloInformacionProductosStyle } from '../styles/ProductosInformacion.style';
+import ReactImageMagnify from 'react-image-magnify';
 
 export const ProductoInformacion = () => {
     const parametros = useParams();
@@ -57,7 +58,18 @@ export const ProductoInformacion = () => {
                                     <ImagenesGaleriaInformacionProductosStyles onMouseOver={() => setImagen(imagen2)} src={imagen2}  alt={nombre}/>
                                     <ImagenesGaleriaInformacionProductosStyles onMouseOver={() => setImagen(imagen3)} src={imagen3}  alt={nombre}/>
                                 </GaleriaInformacionProductosStyles> {/* contenedor 1 */}
-                                <ImagenInformacionProductosStyles src={Imagen}  alt={nombre}/> {/* contenedor 2 */}
+                                <ReactImageMagnify {...{
+                                    smallImage: {
+                                        alt: nombre,
+                                        isFluidWidth: true,
+                                        src: Imagen,
+                                    },
+                                    largeImage: {
+                                        src: Imagen,
+                                        width: 720,
+                                        height: 1280
+                                    }
+                                }} />
                                 <DetallesContenedorInformacionProductosStyles>
                                     <h1>{parametros.nombre}</h1>
                                     <div>
